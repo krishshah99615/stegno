@@ -7,9 +7,7 @@ from PIL import Image as im
 from .forms import *
 from .stegno import  encode as e
 from .stegno import  decode as d
-from wsgiref.util import FileWrapper
-import mimetypes
-# Create your views here.
+
 def home(request):
 
     if request.method == 'POST':
@@ -32,15 +30,6 @@ def encode(request):
         image = im.open(imageobj.img)
         inputtext = request.POST['inputtext']
         e(image,inputtext)
-
-
-
-
-
-
-
-
-
         return render(request, 'home.html', {'isup':'1','imgurl':imageobj.img.url})
     else:
         return HttpResponse("Error")
